@@ -1,17 +1,7 @@
-<html>
-<head><title>First JSP</title></head>
-<body>
-  <%
-    double num = Math.random();
-    if (num > 0.95) {
-  %>
-      <h2>You'll have a luck day!</h2><p>(<%= num %>)</p>
-  <%
-    } else {
-  %>
-      <h2>Well, life goes on ... </h2><p>(<%= num %>)</p>
-  <%
-    }
-  %>
-</body>
-</html>
+ <main role="main" class="container">
+      <div class="jumbotron">
+        <h1>Home page first try</h1>
+        <p class="lead">Scemo Chi Legge - Scemo chi Legge - Scemo chi legge - Scemo chi legge</p>
+        <a class="btn btn-lg btn-primary" href="../../components/navbar/" role="button">Hai letto? Sei scemo &raquo;</a>
+      </div>
+</main>

@@ -34,7 +34,7 @@ public class WebConfiguration implements WebMvcConfigurer{
 	
 	@Bean
 	public String appName() {
-		return "Singers App";
+		return "Food Tracker";
 	}
 		
 	//Declare our static resources. I added cache to the java config but it's not required.
@@ -55,37 +55,37 @@ public class WebConfiguration implements WebMvcConfigurer{
 	
 	
 	
-	@Bean
-	//InternalResourceViewResolver viewResolver(){
-	UrlBasedViewResolver viewResolver() {
-	  //InternalResourceViewResolver resolver =  new InternalResourceViewResolver();
-      UrlBasedViewResolver resolver = new UrlBasedViewResolver();
-	  resolver.setPrefix("/WEB-INF/views/"); 
-	  resolver.setSuffix(".jsp" );
-	  resolver.setRequestContextAttribute("requestContext"); 
-	  resolver.setViewClass(JstlView.class);
-	  return resolver;
-	}
+//	@Bean
+//	//InternalResourceViewResolver viewResolver(){
+//	UrlBasedViewResolver viewResolver() {
+//	  //InternalResourceViewResolver resolver =  new InternalResourceViewResolver();
+//      UrlBasedViewResolver resolver = new UrlBasedViewResolver();
+//	  resolver.setPrefix("/WEB-INF/views/"); 
+//	  resolver.setSuffix(".jsp" );
+//	  resolver.setRequestContextAttribute("requestContext"); 
+//	  resolver.setViewClass(JstlView.class);
+//	  return resolver;
+//	}
 	
 
-//	@Bean
-//	UrlBasedViewResolver tilesViewResolver() {
-//		UrlBasedViewResolver tilesViewResolver = new UrlBasedViewResolver();
-//		tilesViewResolver.setViewClass(TilesView.class);
-//		return tilesViewResolver;
-//	}
-//
-//	@Bean
-//	TilesConfigurer tilesConfigurer() {
-//		TilesConfigurer tilesConfigurer = new TilesConfigurer();
-//		tilesConfigurer.setDefinitions(
-//				"/WEB-INF/layouts/layouts.xml",
-//				"/WEB-INF/views/views.xml",
-//				"/WEB-INF/views/**/views.xml"
-//		);
-//		tilesConfigurer.setCheckRefresh(true);
-//		return tilesConfigurer;
-//	}
+	@Bean
+	UrlBasedViewResolver tilesViewResolver() {
+		UrlBasedViewResolver tilesViewResolver = new UrlBasedViewResolver();
+		tilesViewResolver.setViewClass(TilesView.class);
+		return tilesViewResolver;
+	}
+
+	@Bean
+	TilesConfigurer tilesConfigurer() {
+		TilesConfigurer tilesConfigurer = new TilesConfigurer();
+		tilesConfigurer.setDefinitions(
+				"/WEB-INF/layouts/layouts.xml",
+				"/WEB-INF/views/views.xml",
+				"/WEB-INF/views/**/views.xml"
+		);
+		tilesConfigurer.setCheckRefresh(true);
+		return tilesConfigurer;
+	}
 	
 
 	@Bean
