@@ -1,0 +1,5 @@
+tracker/config/WebInitializer.class
+tracker/config/PersistenceConfiguration.class
+tracker/config/WebConfiguration.class
+tracker/model/entities/Food.class
+tracker/controller/HomeController.class
