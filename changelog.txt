@@ -1,0 +1,10 @@
+Documento per tracciare le modifiche volta per volta
+
+-Sistemato form per aggiungere un singolo alimento al DB
+-Sistemata la persistence configuration cambiando il dialetto SQL (da MySQLDialect a MySQL5Dialect) per far funzionare il passaggio successivo.
+-Nel file di configurazione aggiunta per il primo avvio la proprietà hibernate.hbm2ddl.auto=create per far creare la tabella in automatico se non esiste, necessario al primo avvio, poi commentato altrimenti le tabelle si svuotano ogni volta
+-Aggiunto CSS del template usato per il form  
+
+##################################################################################################
+
+

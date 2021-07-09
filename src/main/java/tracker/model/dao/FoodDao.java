@@ -84,8 +84,8 @@ public class FoodDao {
 		f.setDescrizione(descrizione);
 		f.setCalorie(calorie);
 		
-		this.getSession().save(f);
-		
+		//this.getSession().save(f);
+		this.getSession().persist(f);
 		return f;
 	}
 	

@@ -33,7 +33,7 @@ public class PersistenceConfiguration {
 		DriverManagerDataSource ds = new DriverManagerDataSource();
 		
 		ds.setDriverClassName(com.mysql.cj.jdbc.Driver.class.getName());
-		ds.setUrl("jdbc:mysql://localhost:3306/singerDB?createDatabaseIfNotExist=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false");
+		ds.setUrl("jdbc:mysql://localhost:3306/FoodDB?createDatabaseIfNotExist=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false");
 		ds.setUsername("root");
 		ds.setPassword("rootPwd");
 		return ds;
@@ -55,14 +55,15 @@ public class PersistenceConfiguration {
 	public Properties hibernateProperties() {
 		Properties hibProp = new Properties();
 		
-		//hibProp.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");//per versione MySQL
-		hibProp.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");//per versione Embedded
+		hibProp.put("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");//per versione MySQL
+		//hibProp.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");//per versione Embedded
 		hibProp.put("hibernate.format_sql", true);
 		hibProp.put("hibernate.use_sql_comments", true);
 		hibProp.put("hibernate.show_sql", true);
 		hibProp.put("hibernate.max_fetch_depth", 3);
 		hibProp.put("hibernate.jdbc.batch_size", 10);
 		hibProp.put("hibernate.jdbc.fetch_size", 50);
+		hibProp.put("hibernate.hbm2ddl.auto","create");//Crea la tabella dentro il DB se non esiste(primo avvio)
 		
 		hibProp.put("javax.persistence.schema-generation.database.action", "none");
 		

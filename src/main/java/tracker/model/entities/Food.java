@@ -1,5 +1,7 @@
 package tracker.model.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +11,11 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="food")
-public class Food {
+public class Food implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 18L;
 	private Long id;
 	private String nome;
 	private String descrizione;
@@ -23,7 +29,7 @@ public class Food {
 	}
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ID")
 	public Long getId() {
 		return id;
