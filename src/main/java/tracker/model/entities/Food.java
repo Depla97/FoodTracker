@@ -1,12 +1,16 @@
 package tracker.model.entities;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -24,13 +28,20 @@ public class Food implements Serializable{
 	private int proteine;
 	private int grassi;
 	
+	
+	private Set<Meal> pasti;
+	
+	
+	private User user;
+	
+
 	public void setId(Long id) {
 		this.id = id;
 	}
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "ID")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="ID", updatable=false, nullable=false)
 	public Long getId() {
 		return id;
 	}
@@ -82,5 +93,24 @@ public class Food implements Serializable{
 	}
 	public void setGrassi(int grassi) {
 		this.grassi = grassi;
+	}
+	
+	@ManyToMany(mappedBy = "foods")
+	public Set<Meal> getPasti() {
+		return pasti;
+	}
+
+	public void setPasti(Set<Meal> pasti) {
+		this.pasti = pasti;
+	}
+	
+	@ManyToOne
+	@JoinColumn(name="USER")
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 }

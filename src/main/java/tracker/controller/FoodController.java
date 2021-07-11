@@ -21,14 +21,14 @@ public class FoodController {
 	}
 	
 	@RequestMapping(value="/addFood", method=RequestMethod.GET)
-	String addFood (Model model) {
+	public String addFood (Model model) {
 		
 		model.addAttribute("newFood",new Food());
 		return "/addFoodForm";
 	}
 	
-	@RequestMapping(value="/save", method = RequestMethod.POST)
-	String submitFoodForm (@ModelAttribute("newFood") Food newFood) {
+	@RequestMapping(value="/saveFood", method = RequestMethod.POST)
+	public String submitFoodForm (@ModelAttribute("newFood") Food newFood) {
 		
 		this.foodService.create(newFood);
 		

@@ -14,6 +14,8 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 //import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -26,6 +28,11 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @EnableTransactionManagement
 public class PersistenceConfiguration {
+	
+	@Bean//Bean per memorizzare la password sul DB criptata
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 
 	//Versione del DataSource per MySQL
 	@Bean
@@ -63,7 +70,7 @@ public class PersistenceConfiguration {
 		hibProp.put("hibernate.max_fetch_depth", 3);
 		hibProp.put("hibernate.jdbc.batch_size", 10);
 		hibProp.put("hibernate.jdbc.fetch_size", 50);
-		hibProp.put("hibernate.hbm2ddl.auto","create");//Crea la tabella dentro il DB se non esiste(primo avvio)
+		//hibProp.put("hibernate.hbm2ddl.auto","create");//Crea la tabella dentro il DB se non esiste(primo avvio)
 		
 		hibProp.put("javax.persistence.schema-generation.database.action", "none");
 		

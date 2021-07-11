@@ -13,6 +13,8 @@
 <link rel="stylesheet" href="css/bootstrap.min.css"></link>
 <link rel="stylesheet" href="css/navbar-top-fixed.css"></link>
 <link rel="stylesheet" href="css/sticky-footer.css" ></link>
+<link rel="stylesheet" href="css/signin.css"></link>
+
 <title>Food Tracker</title>
 </head>
 <body>

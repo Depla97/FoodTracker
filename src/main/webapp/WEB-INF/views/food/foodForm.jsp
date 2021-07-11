@@ -4,7 +4,7 @@
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<c:url value="/save" var="action_url" />
+<c:url value="/saveFood" var="action_url" />
 <main role="main" class="container">
 <form:form method="POST" action="${action_url}" modelAttribute="newFood">
 <div class="col-12">
