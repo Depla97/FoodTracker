@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import tracker.model.entities.Food;
 import tracker.model.entities.Meal;
+import tracker.model.entities.User;
 
 @Repository("mealDao")
 public class MealDao extends CommonDao{
@@ -33,18 +34,13 @@ public class MealDao extends CommonDao{
 		this.getSession().delete(meal);
 	}
 
-	public Meal create(Date date, int mealType, Set<Food> foods) {
+	public Meal create(User user, Date date, int mealType) {
 		
 		Meal m = new Meal();
+		m.setUser(user);
 		m.setDate(date);
 		m.setMealType(mealType);
-		for(Food f : foods) {
-			m.addFood(f);
-		}
-		
-		m.calculateCalories(foods);
-		//this.getSession().save(m);
-		this.getSession().persist(m);
+		this.getSession().save(m);
 		return m;
 	}
 	

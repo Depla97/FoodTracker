@@ -4,8 +4,10 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -38,7 +40,7 @@ public class Meal {
 		return id;
 	}
 
-	@ManyToMany
+	@ManyToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 	@JoinTable(name = "food_meal", joinColumns = @JoinColumn(name = "MEAL_ID", nullable = false, updatable = false), inverseJoinColumns = @JoinColumn(name = "FOOD_ID", nullable = false, updatable = false))
 	public Set<Food> getFoods() {
 		return foods;

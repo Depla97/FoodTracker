@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="css/navbar-top-fixed.css"></link>
 <link rel="stylesheet" href="css/sticky-footer.css" ></link>
 <link rel="stylesheet" href="css/signin.css"></link>
+<!-- <link rel="stylesheet" href="css/sidebar.css"></link> -->
 
 <title>Food Tracker</title>
 </head>
@@ -21,9 +22,9 @@
 	<div id="headerBlock">
 		<tiles:insertAttribute name="header" ignore="false" />
 	</div>
-	<div id="menuBlock">
-		<tiles:insertAttribute name="menu" ignore="true" />
-	</div>
+	<!--  <div id="menuBlock">
+		<tiles:insertAttribute name="sidebar" ignore="true" />
+	</div>-->
 	<div id="mainBlock">
 		<tiles:insertAttribute name="body" />
 	</div>

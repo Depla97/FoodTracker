@@ -48,14 +48,14 @@ public class MealController {
 		return "/addMealForm";
 	}
 
-	@PostMapping("/saveMeal")
-	public String submitMealForm(@ModelAttribute("newMeal") Meal newMeal) {
-		
-		this.mealService.create(newMeal.getDate(),newMeal.getMealType(),newMeal.getFoods());
-		
-		
-		return "redirect:/";
-	}
+//	@PostMapping("/saveMeal")
+//	public String submitMealForm(@ModelAttribute("newMeal") Meal newMeal) {
+//		
+//		this.mealService.create(newMeal.getDate(),newMeal.getMealType());
+//		
+//		
+//		return "redirect:/";
+//	}
 	
 	@GetMapping("/addMeal/addToList")
 	public String addFoodToList(@RequestParam(value="id") Long fId,  @ModelAttribute("newMeal") Meal newMeal) {

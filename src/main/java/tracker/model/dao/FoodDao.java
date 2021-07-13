@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import tracker.model.entities.Food;
 import tracker.model.entities.Meal;
+import tracker.model.entities.User;
 
 @Repository("foodDao")
 public class FoodDao extends CommonDao{
@@ -52,8 +53,9 @@ public class FoodDao extends CommonDao{
 
 /////////////////////////////METODI SPECIFICI PER QUESTO DAO
 
+	private static Long id = (long) 0;
+	
 	public List<Food> findAll() {
-
 		return getSession().
 				createQuery("from Food f", Food.class).
 				getResultList();
@@ -75,25 +77,25 @@ public class FoodDao extends CommonDao{
 		this.getSession().delete(food);
 	}
 
-	public Food create(String nome, String descrizione, int calorie) {
+	public Food create(User user, String nome, String descrizione, int calorie) {
+		
 		
 		if ((nome == null || nome.length() == 0) && 
 				(calorie == 0)) {
 			throw new RuntimeException("A food must have a name and calories");
 		}
-		
 		Food f = new Food();
+		f.setId(id+1);
 		f.setNome(nome);
 		f.setDescrizione(descrizione);
 		f.setCalorie(calorie);
-		
-		//this.getSession().save(f);
-		this.getSession().persist(f);
+		f.setUser(user);
+		this.getSession().save(f);
 		return f;
 	}
 	
-	public Food createWMacros(String nome, String descrizione, int calories, int carb, int protein, int fats) {	
-			return null;
-		
-	}
+//	public Food createWMacros(String nome, String descrizione, int calories, int carb, int protein, int fats) {	
+//			return null;
+//		
+//	}
 }

@@ -36,20 +36,22 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		
+//		http.authorizeRequests().antMatchers("/register").permitAll();
+//		http.authorizeRequests().antMatchers("/registerUser").permitAll();//Url di post per registrare un nuovo utente
 //		http.authorizeRequests().antMatchers("/login").permitAll();
-//		http.authorizeRequests().antMatchers("/").permitAll();
-//		http.authorizeRequests().antMatchers("/instruments/**").hasAnyRole("ADMIN");
-//		http.authorizeRequests().antMatchers("/**").hasAnyRole("USER");
+//		http.authorizeRequests().antMatchers("/").hasAnyRole("USER");
+//
 //		
 //		http.formLogin().loginPage("/login");
 //		http.formLogin().defaultSuccessUrl("/");
 //		http.formLogin().failureUrl("/login?error=true");
 //		http.formLogin().permitAll();
-//		
+//	
 //		http.logout().logoutSuccessUrl("/");
 //		http.logout().invalidateHttpSession(true);
 //		http.logout().permitAll();
-//		
+//	
 //		http.csrf().disable();
 	}
 	

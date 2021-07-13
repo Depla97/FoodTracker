@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import tracker.model.dao.FoodDao;
 import tracker.model.entities.Food;
+import tracker.model.entities.User;
 
 @Transactional
 @Service("foodService")
@@ -31,8 +32,8 @@ public class FoodService {
 	}
 	
 	@Transactional
-	public Food create(Food food) {
-		return this.foodRepository.create(food.getNome(),food.getDescrizione(), food.getCalorie());
+	public Food create(User user, String nome, String descrizione, int calorie) {
+		return this.foodRepository.create(user,nome,descrizione,calorie);
 	}
 	
 	@Transactional
@@ -42,8 +43,13 @@ public class FoodService {
 	}
 	
 	@Transactional
+	public void delete (Food food) {
+		this.foodRepository.delete(food);
+	}
+	
+	@Transactional
 	public void delete (Long fId) {
-		Food f = this.foodRepository.findById(fId);
+		Food f=this.foodRepository.findById(fId);
 		this.foodRepository.delete(f);
 	}
 	

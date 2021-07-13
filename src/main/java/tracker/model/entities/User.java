@@ -3,8 +3,10 @@ package tracker.model.entities;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -26,13 +28,13 @@ public class User {
 	@Column(name = "ENABLED")
 	private boolean enabled;
 	
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	private Set<Food> cibi = new HashSet<Food>();
 	
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	private Set<Meal> pasti = new HashSet<Meal>();
 	
-	@ManyToMany
+	@ManyToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 	@JoinTable(name = "users_roles", 
 		      joinColumns = @JoinColumn(
 		    	        name = "username", referencedColumnName = "username"), 
@@ -89,12 +91,17 @@ public class User {
 	}
 	
 	public void addFood(Food food) {
+		food.setUser(this);
 		this.cibi.add(food);
 	}
 	public void addMeal(Meal meal) {
+		meal.setUser(this);
 		this.pasti.add(meal);
 	}
-	
+	public void addRole(Role role) {
+		role.getUsers().add(this);
+		this.roles.add(role);
+	}
 	
 	
 }

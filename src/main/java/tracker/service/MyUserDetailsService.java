@@ -47,6 +47,10 @@ public class MyUserDetailsService implements UserDetailsService{
 		return builder.build();
 	}
 	
-	
+	@Transactional
+	public User create(String username, String password, boolean isEnabled)
+	{
+		return this.userDetailsDao.create(username,password,isEnabled);
+	}
 
 }

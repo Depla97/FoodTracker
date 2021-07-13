@@ -1,24 +1,29 @@
+<%@page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
+<c:url value="/registerUser" var="action_url" />
 <main class="form-signin">
-<form>
+<form:form method="POST" action="${action_url}" modelAttribute="newUser">
 	<img class="mb-4" src="/docs/5.0/assets/brand/bootstrap-logo.svg"
 		alt="" width="72" height="57">
-	<h1 class="h3 mb-3 fw-normal">Accedi al tuo account</h1>
+	<h1 class="h3 mb-3 fw-normal">Registrati</h1>
 
 	<div class="form-floating">
-		<input type="email" class="form-control" id="floatingInput"
-			placeholder="Username"> <label for="floatingInput">Username</label>
+		<form:input path="username" type="username" class="form-control" id="floatingInput"
+			placeholder="Username"/> <label for="floatingInput">Username</label>
 	</div>
 	<div class="form-floating">
-		<input type="password" class="form-control" id="floatingPassword"
-			placeholder="Password"> <label for="floatingPassword">Password</label>
+		<form:input path="password" type="password" class="form-control" id="floatingPassword"
+			placeholder="Password"/> <label for="floatingPassword">Password</label>
 	</div>
 
-	<div class="checkbox mb-3">
-		<label> <input type="checkbox" value="remember-me">
-			Remember me
-		</label>
-	</div>
-	<button class="w-100 btn btn-lg btn-primary" type="submit">Accedi</button>
 	
-</form>
+	<form:button class="w-100 btn btn-lg btn-primary" type="submit">Registrati</form:button>
+	
+</form:form>
+
 </main>
+	

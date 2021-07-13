@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,15 +22,28 @@ public class Role {
     @Column
     private String name;
     
-    
-    @ManyToMany(mappedBy = "roles")
+    @ManyToMany(mappedBy = "roles",fetch=FetchType.EAGER)
     private Set<User> users = new HashSet<User>();
  
-    public String getName() {
+    public Set<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(Set<User> users) {
+		this.users = users;
+	}
+	
+    public void addUser(User u) {
+    	this.users.add(u);
+    }
+
+	public String getName() {
     	return this.name;
     }
     
     public void setName(String name) {
     	this.name = name;
     }
+    
+
 }

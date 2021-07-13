@@ -24,12 +24,8 @@
 		<div class="text-end">
 			<c:if test="${isAuth}">Benvenuto</c:if>
 			<c:if test="${!isAuth}">
-				<form action="<c:url value="/login"/>">
-				<button type="submit" class="btn btn-outline-light me-2"
-					>Login</button>
-					
-				<button type="button" class="btn btn-warning">Sign-up</button>
-				</form>
+					<a href="<c:url value="/login"/>" class="btn btn-outline-light me-2">Login</a>
+					<a href="<c:url value="/register"/>" class="btn btn-warning">Sign-up</a>
 			</c:if>
 		</div>
 	</div>
