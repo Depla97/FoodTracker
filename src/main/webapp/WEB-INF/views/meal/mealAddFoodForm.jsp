@@ -47,7 +47,7 @@
 			<td>${a.nome}</td>
 			<td>${a.descrizione}</td>
 			<td>${a.calorie}</td>
-			<td><a href="<c:url value="/meal/keepAdding?mealId=${mealId}&foodId=${f.id}"/>">Rimuovi</a></td>
+			
 			
 		</tr>
 </c:forEach>

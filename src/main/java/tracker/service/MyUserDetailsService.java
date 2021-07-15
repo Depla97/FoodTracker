@@ -8,7 +8,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.transaction.annotation.Transactional;
 
 import tracker.model.dao.MyUserDetailsDao;
-import tracker.model.dao.UserDetailsDao;
 import tracker.model.entities.Role;
 import tracker.model.entities.User;
 

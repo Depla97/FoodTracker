@@ -35,7 +35,7 @@
 			</td>
 			<td>${m.date}</td>
 			<td>${m.calories}</td>
-			<td><a href="/meal/delete?mealId=${m.id}">Elimina</a></td>
+			<td><a href="<c:url value="/meal/delete?mealId=${m.id}"/>">Elimina</a></td>
 		</tr>
 		<c:forEach items="${m.foods}" var="f">
 		<tr>
