@@ -17,11 +17,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="food")
-public class Food implements Serializable{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 18L;
+public class Food{
+	
 	private Long id;
 	private String nome;
 	private String descrizione;
