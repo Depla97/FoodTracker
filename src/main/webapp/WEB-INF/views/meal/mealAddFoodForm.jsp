@@ -5,28 +5,55 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
-<c:url value="/meal/keepAdding" var="action_url" />
+	
 <main role="main" class="container">
-	<div><sec:authentication property='principal.username'/></div>
-	<h1>Elenco di ${currentUser.username}</h1>
-<table>
-<thead><td></td><td>Nome</td><td></td><td>Marca</td><td></td><td>Calorie</td></thead>
+<div class="jumbotron">
+	<h1>Completa il tuo pasto <sec:authentication property='principal.username'/></h1>
+<table class="table">
+<thead class="thead-light">
+	<tr>
+		<th scope="col">Nome</th>
+		<th scope="col">Marca</th>
+		<th scope="col">Calorie</th>
+	</tr>
+</thead>
+<tbody>
 <c:forEach items="${foodList}" var="f">
-<tr>
-	<td>${f.nome}</td><td></td><td>${f.descrizione}</td><td></td><td>${f.calorie}</td><td><a href="<c:url value="/meal/keepAdding?mealId=${mealId}&foodId=${f.id}"/>">Aggiungi</a></td>
-</tr>
+		<tr>
+			
+			<td>${f.nome}</td>
+			<td>${f.descrizione}</td>
+			<td>${f.calorie}</td>
+			<td><a href="<c:url value="/meal/keepAdding?mealId=${mealId}&foodId=${f.id}"/>">Aggiungi</a></td>
+			
+		</tr>
 </c:forEach>
+</tbody>
 </table>
 	
-	<div><h1>Cibi aggiunti</h1>
-<table>
-<thead><td></td><td>Nome</td><td></td><td>Marca</td><td></td><td>Calorie</td></thead>
-<c:forEach items="${aggiunti}" var="a">
-<tr>
-	<td>${a.nome}</td><td></td><td>${a.descrizione}</td><td></td><td>${a.calorie}</td>
-</tr>
-</c:forEach>
-</table></div>
+	<div><h2>Cibi aggiunti</h2>
 	
+	<table class="table">
+<thead class="thead-light">
+	<tr>
+		<th scope="col">Nome</th>
+		<th scope="col">Marca</th>
+		<th scope="col">Calorie</th>
+	</tr>
+</thead>
+<tbody>
+<c:forEach items="${aggiunti}" var="a">
+		<tr>
+			<td>${a.nome}</td>
+			<td>${a.descrizione}</td>
+			<td>${a.calorie}</td>
+			<td><a href="<c:url value="/meal/keepAdding?mealId=${mealId}&foodId=${f.id}"/>">Rimuovi</a></td>
+			
+		</tr>
+</c:forEach>
+</tbody>
+</table>
+	</div>
 	<a href="<c:url value="/meal/completeMeal?mealId=${mealId}"/>" class="btn btn-warning">Completa il pasto e aggiungi al Database</a>
+	</div>
 </main>

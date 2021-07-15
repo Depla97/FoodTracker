@@ -1,14 +1,51 @@
- <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
- <main role="main" class="container">
+<%@page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+	
+
+<main role="main" class="container">
       <div class="jumbotron">
-        <h1>Home page</h1>
+        <h1>Food Tracker</h1>
         <p class="lead"></p>
-        <a class="btn btn-lg btn-primary" href="<c:url value="/food/add"/>" role="button">Inserisci un alimento &raquo;</a><br>
-     	<!--  <a class="btn btn-lg btn-primary" href="addMeal" role="button">Inserisci un pasto &raquo;</a>-->
-     	<a class="btn btn-lg btn-primary" href="<c:url value="/food/list"/>" role="button">Vai alla lista dei tuoi alimenti &raquo;</a>
-      	<br>
-      	<a class="btn btn-lg btn-primary" href="<c:url value="/meal/add"/>" role="button">Crea un nuovo pasto &raquo;</a>
-      	<br>
-      	<a class="btn btn-lg btn-primary" href="<c:url value="/meal/list"/>" role="button">Visualizza i tuoi pasti&raquo;</a>
-      </div>
+	<h2>Ecco i tuoi pasti di oggi
+	<sec:authentication property='principal.username' />
+</h2>
+<table class="table">
+<thead class="thead-light">
+	<tr>
+		<th scope="col">Tipo</th>
+		<th scope="col">Data</th>
+		<th scope="col">Calorie</th>
+		<th scope="col">Azioni</th>
+	</tr>
+</thead>
+<tbody>
+	<c:forEach items="${mealList}" var="m">
+		<tr>	
+			<td>
+			<c:if test="${m.mealType == 1}">Colazione</c:if>
+			<c:if test="${m.mealType == 2}">Pranzo</c:if>
+			<c:if test="${m.mealType == 3}">Merenda</c:if>
+			<c:if test="${m.mealType == 4}">Cena</c:if>
+			<c:if test="${m.mealType == 5}">Spuntino</c:if>
+			</td>
+			<td>${m.date}</td>
+			<td>${m.calories}</td>
+			<td><a href="/meal/delete?mealId=${m.id}">Elimina</a></td>
+		</tr>
+		<c:forEach items="${m.foods}" var="f">
+		<tr>
+
+			<td>${f.nome} - ${f.descrizione} - ${f.calorie}</td>
+			
+		</tr>
+		</c:forEach>
+		</c:forEach>
+</tbody>
+</table>
+</div>
 </main>

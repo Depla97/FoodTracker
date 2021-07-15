@@ -1,5 +1,7 @@
 package tracker.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -35,7 +37,7 @@ public class MealService {
 	}
 
 	@Transactional
-	public Meal create(User user, Date date, int mealType) {
+	public Meal create(User user, String date, int mealType) {
 		return this.mealRepository.create(user, date, mealType);
 	}
 
@@ -64,5 +66,41 @@ public class MealService {
 		}
 		m.setCalories(sum);
 		return this.mealRepository.update(m);
+	}
+	
+	@Transactional
+	public Meal convertDate(Meal m) {//Imposta la data a oggi, ieri o domani in base al valore passato dal controller
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
+		Calendar c = Calendar.getInstance(); 
+		Date date = new Date();//contiene la data di oggi
+		c.setTime(date); 
+		switch(m.getDate()) {
+		case "1"://Oggi
+			m.setDate(formatter.format(date));
+			return this.mealRepository.update(m);
+		case "2"://Ieri
+			c.add(Calendar.DATE, -1);
+			date = c.getTime();
+			m.setDate(formatter.format(date));
+			return this.mealRepository.update(m);
+			
+		case "3"://Domani
+			c.add(Calendar.DATE, 1);
+			date = c.getTime();
+			m.setDate(formatter.format(date));
+			return this.mealRepository.update(m);
+		}
+		return null;//In caso non sia ne uno nè due nè 3 ritorna un pasto null
+	}
+	
+	public boolean compareTodayDate(String sdate) {
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
+		Date date = new Date();//contiene la data di oggi
+		String comparative = formatter.format(date);
+		
+		if(sdate.equals(comparative))
+			return true;
+		else
+			return false;
 	}
 }

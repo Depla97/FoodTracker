@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import tracker.model.entities.Role;
 import tracker.model.entities.User;
@@ -22,8 +23,9 @@ public class AutenticationController {
 	private UserService userService;
 	
 	@RequestMapping(value = "/login", method=RequestMethod.GET)
-	public String login (Model model) {
-		
+	public String login (Model model, @RequestParam(value="error", required=false) boolean error) {
+		if(error)
+			model.addAttribute("error", true);
 		model.addAttribute("appName", appName);
 		return "login";
 		

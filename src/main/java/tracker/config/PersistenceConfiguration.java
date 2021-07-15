@@ -70,7 +70,7 @@ public class PersistenceConfiguration {
 		hibProp.put("hibernate.max_fetch_depth", 3);
 		hibProp.put("hibernate.jdbc.batch_size", 10);
 		hibProp.put("hibernate.jdbc.fetch_size", 50);
-		//hibProp.put("hibernate.hbm2ddl.auto","create");//Crea la tabella dentro il DB se non esiste(primo avvio)
+		//hibProp.put("hibernate.hbm2ddl.auto","create");//Crea la tabella dentro il DB se non esiste (primo avvio) e droppa tutte le tabelle esistenti (avvii successivi)
 		
 		hibProp.put("javax.persistence.schema-generation.database.action", "none");
 		

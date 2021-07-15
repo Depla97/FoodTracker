@@ -71,6 +71,17 @@ public class UserService {
 	}
 	
 	@Transactional
+	public Food findSingleFoodByUser(User user, Long foodId){
+		List<Food> fList = this.userRepository.getFoods(user);
+		for(Food f : fList)
+			if(f.getId() == foodId)
+				return f;
+			else
+				return null;
+		return null;//se non trova il cibo cercato ritorna null
+	}
+	
+	@Transactional
 	public List<Meal> findMealByUser(User user){
 		return this.userRepository.getMeals(user);
 	}

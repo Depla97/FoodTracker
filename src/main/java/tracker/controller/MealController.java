@@ -36,14 +36,15 @@ public class MealController {
 
 	private List<Food> aggiunti = new ArrayList<Food>();
 
+	@GetMapping("/")
+	public String mealRoot() {
+		return "redirect:/meal/list";
+	}
+	
 	@GetMapping("/add")
 	public String addMeal(Principal principal, Model model) {
-
 		User u = this.userService.findByUsername(principal.getName());
-
 		model.addAttribute("newMeal", new Meal());
-		model.addAttribute("currentUser", u);
-		model.addAttribute("selectedFood", new HashSet<Food>());
 		return "addMealForm";
 	}
 
@@ -51,22 +52,29 @@ public class MealController {
 	public String submitFirstMealForm(@ModelAttribute("newMeal") Meal newMeal, Principal principal, Model model) {
 		// metodo che crea un nuovo pasto e reindirizza a un secondo form per aggiungere
 		// gli alimenti
+		String error;
 		User u = this.userService.findByUsername(principal.getName());
-		Meal m = this.mealService.create(u, newMeal.getDate(), newMeal.getMealType());
 		List<Food> fList = this.userService.findFoodByUser(u);
-		this.aggiunti.clear();
-		model.addAttribute("mealId", m.getId());
-		model.addAttribute("currentUser", u);
-		model.addAttribute("foodList", fList);
-		model.addAttribute("aggiunti", this.aggiunti);
-		return "mealAddFoodForm";
+		if (fList.size() != 0) {
+			Meal m = this.mealService.create(u, newMeal.getDate(), newMeal.getMealType());
+			this.aggiunti.clear();
+			model.addAttribute("mealId", m.getId());
+			model.addAttribute("currentUser", u);
+			model.addAttribute("foodList", fList);
+			model.addAttribute("aggiunti", this.aggiunti);
+			return "mealAddFoodForm";
+		} else {
+			error = "1";
+			model.addAttribute("error", error);
+			return "redirect:/food/add";
+		}
 	}
 
 	@RequestMapping(value = "/keepAdding", method = { RequestMethod.GET, RequestMethod.POST })
 	public String keepAdding(@RequestParam(value = "mealId", required = true, defaultValue = "-1") Long mId,
 			@RequestParam(value = "foodId", required = false, defaultValue = "-1") Long fId, Principal principal,
 			Model model) {
-		
+
 		User u = this.userService.findByUsername(principal.getName());
 		List<Food> fList = this.userService.findFoodByUser(u);
 		Meal m = this.mealService.findById(mId);
@@ -75,7 +83,6 @@ public class MealController {
 			m.addFood(f);
 			m = this.mealService.update(m);
 			this.aggiunti.add(f);
-
 			model.addAttribute("mealId", mId);
 			model.addAttribute("aggiunti", this.aggiunti);
 			model.addAttribute("foodList", fList);
@@ -86,8 +93,8 @@ public class MealController {
 	@GetMapping("/completeMeal")
 	public String completeMeal(@RequestParam(value = "mealId", required = true, defaultValue = "-1") Long mId) {
 		Meal m = this.mealService.findById(mId);
-		m = this.mealService.calculateCalories(m);//ritorna già l'update, non serve che si rifaccia
-		
+		m = this.mealService.calculateCalories(m);// ritorna già l'update, non serve che si rifaccia
+		m= this.mealService.convertDate(m);//ritorna già l'update, non serve che si rifaccia
 		return "redirect:/meal/list";
 	}
 
@@ -98,8 +105,24 @@ public class MealController {
 		List<Meal> mList = this.userService.findMealByUser(u);// Qui andrà richiamata find by user
 		model.addAttribute("mealList", mList);
 		model.addAttribute("currentUser", u);
-
 		return "mealList";
 	}
+	
+	@GetMapping("/edit")
+	public String editMeals(Model model) {
+		return null;
+	}
+	
+	@GetMapping("/delete")
+	public String deleteMeal(Principal principal, @RequestParam(value = "mealId", required = true, defaultValue = "-1") Long mId) {
+	
+		Meal m = this.mealService.findById(mId);
+		if(m.getUser().getUsername().equals(principal.getName()))//Controllo di sicurezza
+			this.mealService.delete(m);
+		
+		return "redirect:/meal/list";
+	}
+	
+	
 
 }

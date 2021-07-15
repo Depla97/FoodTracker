@@ -39,6 +39,8 @@ public class FoodService {
 	
 	@Transactional
 	public Food update (Food food) {
+		int cal = (int)(food.getCalorie() * ((float)food.getPeso() / 100));
+		food.setCalorie(cal);
 		return this.foodRepository.update(food);
 		
 	}

@@ -3,15 +3,17 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-
-<c:url value="/food/saveFood" var="action_url" />
+<%@taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+	<sec:authentication property='principal.username' var="user" />
+<c:if test="${user==fEdit.user.username}">
+<c:url value="/food/edit/saveFood?foodId=${foodId}" var="action_url" />
 <main role="main" class="container">
 	<div class="jumbotron">
-		<c:if test="${errorCode == '1'}"><h2 style="color:red">Prima di creare un pasto, inserisci almeno un alimento</h2></c:if>
-		<br>
-		<h1>Inserisci un alimento</h1>
+		<h1>Modifica l'alimento selezionato</h1>
 		<form:form method="POST" action="${action_url}"
-			modelAttribute="newFood">
+			modelAttribute="fEdit">
+			
 			<form:label path="nome" class="form-label">Nome</form:label>
 			<form:input path="nome" class="form-control" placeholder="es:Pane" />
 			<br>
@@ -19,7 +21,6 @@
 			<form:input path="descrizione" class="form-control"
 				placeholder="es:Mulino Bianco" />
 			<br>
-
 			<form:label path="calorie" class="form-label">Calorie per 100g</form:label>
 			<form:input path="calorie" class="form-control" />
 			<br>
@@ -27,7 +28,14 @@
 			<form:input path="peso" class="form-control" />
 			<br>
 			<hr class="my-4">
-			<form:button class="w-100 btn btn-primary btn-lg" type="submit">Inserisci nel Database</form:button>
+			<form:button class="w-100 btn btn-primary btn-lg" type="submit">Applica le modifiche</form:button>
 		</form:form>
 	</div>
 </main>
+</c:if>
+<c:if test="${user!=fEdit.user.username}">
+<main role="main" class="container">
+<div class="jumbotron">
+<h2 style="color:red">Non sei autorizzato a modificare quest'oggetto</h2>
+</div></main>
+</c:if>

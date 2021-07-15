@@ -3,25 +3,24 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+	
 
-<!-- 
-<table>
-<thead><td></td><td>Tipo</td><td></td><td>Data</td><td></td><td>Cibi</td></thead>
-<c:forEach items="${mealList}" var="m">
-<tr>
-	<td>${m.mealType}</td><td></td><td>${f.descrizione}</td><td></td><td><c:forEach items="${m.foods}" var="f">${f.nome}</c:forEach></td>
-</tr>
-</c:forEach>
-</table>
-<hr/> -->
 <main>
-<h1>Elenco pasti di ${currentUser.username}</h1>
+<div class="jumbotron">
+<h1>
+	Ecco i pasti che hai salvato 
+	<sec:authentication property='principal.username' />
+</h1>
+</div>
 <table class="table">
 <thead class="thead-light">
 	<tr>
 		<th scope="col">Tipo</th>
 		<th scope="col">Data</th>
 		<th scope="col">Calorie</th>
+		<th scope="col">Azioni</th>
 	</tr>
 </thead>
 <tbody>
@@ -36,14 +35,15 @@
 			</td>
 			<td>${m.date}</td>
 			<td>${m.calories}</td>
+			<td><a href="delete?mealId=${m.id}">Elimina</a></td>
 		</tr>
+		<c:forEach items="${m.foods}" var="f">
 		<tr>
-		<td>
-			<c:forEach items="${m.foods}" var="f">
-			<td>${f.nome}</td>
-			</c:forEach>
-			</td>
+
+			<td>${f.nome} - ${f.descrizione}</td>
+			
 		</tr>
+		</c:forEach>
 		</c:forEach>
 </tbody>
 </table>

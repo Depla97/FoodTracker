@@ -12,9 +12,9 @@
 		<li class="dropdown"><a href="<c:url value="/meal/list"/>">Pasti</a>
 			<ul class="subMenu">
 				<li><a href="<c:url value="/meal/add"/>">Aggiungi</a></li>
-				<li><a href="<c:url value="/meal/list"/>">Lista</a></li>
+				<li><a href="<c:url value="/meal/list"/>">Lista</a></li>		
 			</ul></li>
-		<li class="dropdown"><a href="">Cibi</a>
+		<li class="dropdown"><a href="">Alimenti</a>
 			<ul class="subMenu">
 				<li><a href="<c:url value="/food/add"/>">Aggiungi</a></li>
 				<li><a href="<c:url value="/food/list"/>">Lista</a></li>
@@ -32,7 +32,6 @@
 			</li>
 			<li class="rightaligned2"><a href="<c:url value="/login"/>"
 				class="btn btn-outline-light me-2">Login</a></li>
-
 			</c:if>
 	</ul>
 

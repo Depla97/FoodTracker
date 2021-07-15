@@ -27,7 +27,7 @@ public class Meal {
 
 	private User user;
 
-	private Date date;
+	private String date;
 
 	// private String name;
 	private int mealType;// 1=colazione - 2=pranzo - 3=merenda - 4=cena - 5=spuntino
@@ -55,7 +55,7 @@ public class Meal {
 	}
 
 	@Column(name = "DATE")
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
@@ -73,7 +73,7 @@ public class Meal {
 		this.id = id;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 

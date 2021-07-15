@@ -16,21 +16,18 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/navbar-top-fixed.css"></link>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/sticky-footer.css" ></link>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/signin.css"></link>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/form.css" ></link>
+
 
 <title>Food Tracker</title>
 </head>
 <body>
-
 	<div id="headerBlock">
 		<tiles:insertAttribute name="header" ignore="false" />
 	</div>
 	<div class="b-example-divider"></div>
 	<div id="mainBlock">
 		<tiles:insertAttribute name="body" />
-	</div>
-	
-	<div id="footerBlock">
-		<tiles:insertAttribute name="footer" ignore="true" />
 	</div>
 </body>
 </html>

@@ -31,7 +31,7 @@ public class MealDao extends CommonDao{
 		this.getSession().delete(meal);
 	}
 
-	public Meal create(User user, Date date, int mealType) {
+	public Meal create(User user, String date, int mealType) {
 		
 		Meal m = new Meal();
 		m.setUser(user);

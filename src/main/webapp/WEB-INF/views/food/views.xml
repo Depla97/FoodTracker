@@ -9,4 +9,7 @@
   <definition extends="default" name="list">
    <put-attribute name="body" value="/WEB-INF/views/food/foodList.jsp" />
   </definition>
+  <definition extends="default" name="editFoodForm">
+   <put-attribute name="body" value="/WEB-INF/views/food/editFoodForm.jsp" />
+  </definition>
 </tiles-definitions>
