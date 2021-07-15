@@ -34,7 +34,7 @@ public class User {
 	@OneToMany(mappedBy = "user", fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	private Set<Meal> pasti = new HashSet<Meal>();
 	
-	@ManyToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+	@ManyToMany
 	@JoinTable(name = "users_roles", 
 		      joinColumns = @JoinColumn(
 		    	        name = "username", referencedColumnName = "username"), 

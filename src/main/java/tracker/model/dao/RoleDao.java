@@ -4,26 +4,22 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import tracker.model.entities.Food;
 import tracker.model.entities.Role;
-import tracker.model.entities.User;
 
 @Repository("roleDao")
 public class RoleDao extends CommonDao{
 
-//	public Role findByName(String name) {
-//		List<Role> tutti=getSession().
-//				createQuery("from Role r", Role.class).
-//				getResultList();
-//		for(Role r : tutti)
-//		{
-//			if(r.getName().equals(name))
-//				return r;
-//		}
-//		 
-//			return null;
-//		
-//	}
+	public Role findByName(String name) {
+		List<Role> allRoles=this.findAll();
+		for(Role r : allRoles)
+		{
+			if(r.getName().equals(name.toUpperCase()))//nomi dei ruoli possono essere solo maiuscoli
+				return r;
+		}
+			return null;
+		
+	}
+	
 	public List<Role> findAll() {
 		return getSession().
 				createQuery("from Role r", Role.class).

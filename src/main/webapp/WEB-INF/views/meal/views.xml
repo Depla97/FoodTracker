@@ -3,7 +3,13 @@
    Foundation//DTD Tiles  Configuration 3.0//EN"
    "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
-  <definition extends="default" name="/addMealForm">
+  <definition extends="default" name="addMealForm">
    <put-attribute name="body" value="/WEB-INF/views/meal/mealForm.jsp" />
+  </definition>
+    <definition extends="default" name="mealAddFoodForm">
+   <put-attribute name="body" value="/WEB-INF/views/meal/mealAddFoodForm.jsp" />
+  </definition>
+   <definition extends="default" name="mealList">
+   <put-attribute name="body" value="/WEB-INF/views/meal/mealList.jsp" />
   </definition>
 </tiles-definitions>

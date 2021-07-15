@@ -32,8 +32,9 @@ public class FoodService {
 	}
 	
 	@Transactional
-	public Food create(User user, String nome, String descrizione, int calorie) {
-		return this.foodRepository.create(user,nome,descrizione,calorie);
+	public Food create(User user, String nome, String descrizione, int calorie, int peso) {
+		int cal = (int)(calorie * ((float)peso / 100));//calcola in automatico le calorie della porzione
+		return this.foodRepository.create(user,nome,descrizione,cal,peso);
 	}
 	
 	@Transactional

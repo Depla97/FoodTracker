@@ -6,27 +6,35 @@
 
 <sec:authorize access="isAuthenticated()" var="isAuth" />
 
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-	<a class="navbar-brand" href="#">${appName}</a>
-	<button class="navbar-toggler" type="button" data-toggle="collapse"
-		data-target="#navbarCollapse" aria-controls="navbarCollapse"
-		aria-expanded="false" aria-label="Toggle navigation">
-		<span class="navbar-toggler-icon"></span>
-	</button>
-	<div class="collapse navbar-collapse" id="navbarCollapse">
-		<ul class="navbar-nav mr-auto">
-			<li class="nav-item active"><a class="nav-link"
-				href="<c:url value="/"/>">Home <span class="sr-only">(current)</span></a>
+<nav class="mynavbar">
+	<ul class="menu">
+		<li><a href="<c:url value="/"/>">Home</a></li>
+		<li class="dropdown"><a href="<c:url value="/meal/list"/>">Pasti</a>
+			<ul class="subMenu">
+				<li><a href="<c:url value="/meal/add"/>">Aggiungi</a></li>
+				<li><a href="<c:url value="/meal/list"/>">Lista</a></li>
+			</ul></li>
+		<li class="dropdown"><a href="">Cibi</a>
+			<ul class="subMenu">
+				<li><a href="<c:url value="/food/add"/>">Aggiungi</a></li>
+				<li><a href="<c:url value="/food/list"/>">Lista</a></li>
+			</ul></li>
+
+		<c:if test="${isAuth}">
+			<li class="rightaligned"><a href="<c:url value="/logout"/>">Logout</a>
+			<li class="rightaligned"><a href="<c:url value="/"/>"><sec:authentication
+						property='principal.username' /></a></li>
+		</c:if>
+
+		<c:if test="${!isAuth}">
+			<li class="rightaligned2">
+		<a href="<c:url value="/register"/>" class="btn btn-warning">Sign-up</a>
 			</li>
+			<li class="rightaligned2"><a href="<c:url value="/login"/>"
+				class="btn btn-outline-light me-2">Login</a></li>
 
-		</ul>
-
-		<div class="text-end">
-			<c:if test="${isAuth}">Benvenuto</c:if>
-			<c:if test="${!isAuth}">
-					<a href="<c:url value="/login"/>" class="btn btn-outline-light me-2">Login</a>
-					<a href="<c:url value="/register"/>" class="btn btn-warning">Sign-up</a>
 			</c:if>
-		</div>
-	</div>
+	</ul>
+
+
 </nav>

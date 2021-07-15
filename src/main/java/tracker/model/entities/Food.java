@@ -26,9 +26,8 @@ public class Food implements Serializable{
 	private String nome;
 	private String descrizione;
 	private int calorie;
-	private int carboidrati;
-	private int proteine;
-	private int grassi;
+	private int peso;
+	
 	
 	
 	private Set<Meal> pasti;
@@ -62,21 +61,14 @@ public class Food implements Serializable{
 		return calorie;
 	}
 	
-	@Column(name="CARBOIDRATI")
-	public int getCarboidrati() {
-		return carboidrati;
+	@Column(name="PESO")
+	public int getPeso() {
+		return peso;
 	}
 	
-	@Column(name="PROTEINE")
-	public int getProteine() {
-		return proteine;
+	public void setPeso(int peso) {
+		this.peso=peso;
 	}
-	
-	@Column(name="GRASSI")
-	public int getGrassi() {
-		return grassi;
-	}
-	
 	
 	public void setNome(String nome) {
 		this.nome = nome;
@@ -86,15 +78,6 @@ public class Food implements Serializable{
 	}
 	public void setCalorie(int calorie) {
 		this.calorie = calorie;
-	}
-	public void setCarboidrati(int carboidrati) {
-		this.carboidrati = carboidrati;
-	}
-	public void setProteine(int proteine) {
-		this.proteine = proteine;
-	}
-	public void setGrassi(int grassi) {
-		this.grassi = grassi;
 	}
 	
 	@ManyToMany(mappedBy = "foods",fetch=FetchType.EAGER, cascade= {CascadeType.REMOVE})

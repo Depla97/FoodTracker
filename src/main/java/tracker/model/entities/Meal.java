@@ -85,15 +85,7 @@ public class Meal {
 		this.calories = calories;
 	}
 
-	public void calculateCalories(Set<Food> foods) {
 
-		int sum = 0;
-		foods = this.foods;
-		for (Food f : foods) {
-			sum = sum + f.getCalorie();
-		}
-		this.setCalories(sum);
-	}
 
 	@ManyToOne
 	@JoinColumn(name = "USER")

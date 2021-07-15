@@ -1,5 +1,6 @@
 package tracker.service;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -7,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import tracker.model.dao.MyUserDetailsDao;
 import tracker.model.dao.RoleDao;
 import tracker.model.entities.Food;
+import tracker.model.entities.Meal;
 import tracker.model.entities.Role;
 import tracker.model.entities.User;
 
@@ -55,8 +57,21 @@ public class UserService {
 	}
 	
 	@Transactional
+	public Role findRoleByName(String name) {
+		return this.roleRepository.findByName(name);
+	}
+	@Transactional
 	public void encryptPassword(User user) {
 		user.setPassword(this.userRepository.encryptPassword(user.getPassword()));
-		
+	}
+	
+	@Transactional
+	public List<Food> findFoodByUser(User user){
+		return this.userRepository.getFoods(user);
+	}
+	
+	@Transactional
+	public List<Meal> findMealByUser(User user){
+		return this.userRepository.getMeals(user);
 	}
 }

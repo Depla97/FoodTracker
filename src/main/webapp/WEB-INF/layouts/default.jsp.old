@@ -1,0 +1,36 @@
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<html>
+<head>
+<link rel="stylesheet" href="<c:url value="css/bootstrap.min.css"/>"></link>
+<link rel="stylesheet" href="<c:url value="css/navbar-top-fixed.css"/>"></link>
+<link rel="stylesheet" href="<c:url value="css/sticky-footer.css"/>"></link>
+<link rel="stylesheet" href="<c:url value="css/signin.css"/>"></link>
+<link rel="stylesheet" href="<c:url value="css/sidebar.css"/>"></link>
+<title>${appName}</title>
+</head>
+<body>
+	<table>
+		<tr>
+			<td colspan="2"><tiles:insertAttribute name="header"
+					ignore="false" /></td>
+		</tr>
+		<tr>
+			<td><tiles:insertAttribute name="menu" ignore="true" /></td>
+			
+			<td><tiles:insertAttribute name="body" /></td>
+		</tr>
+		<tr>
+
+					
+		</tr>
+	</table>
+	<div id="footerBlock">
+			<tiles:insertAttribute name="footer"
+					ignore="true" />
+					</div>
+</body>
+	
+			
+
+</html>

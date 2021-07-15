@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.transaction.annotation.Transactional;
 
-
+import tracker.model.dao.MyUserDetailsDao;
 import tracker.model.dao.UserDetailsDao;
 import tracker.model.entities.Role;
 import tracker.model.entities.User;
@@ -16,7 +16,7 @@ import tracker.model.entities.User;
 public class MyUserDetailsService implements UserDetailsService{
 	
 	@Autowired
-	private UserDetailsDao userDetailsDao;
+	private MyUserDetailsDao userDetailsDao;
 
 	//Metodo che serve a Spring per "costruire" (build) un utente della classe userdetails
 	//che contiene i dettagli di un utente mio persistente che passo utilizzando il mio DAO

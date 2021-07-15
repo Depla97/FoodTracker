@@ -4,7 +4,7 @@
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<c:url value="/food/${currentUser.username}/saveFood" var="action_url" />
+<c:url value="/food/saveFood" var="action_url" />
 <main role="main" class="container">
 <div>${currentUser.username}</div>
 <form:form method="POST" action="${action_url}" modelAttribute="newFood">
@@ -21,7 +21,8 @@
             <form:label path="calorie" class="form-label">Calorie per 100g</form:label>
               <form:input path="calorie" class="form-control"/>
 
-			
+			       <form:label path="peso" class="form-label">Porzione in grammi</form:label>
+              <form:input path="peso" class="form-control"/>
           </div>
           <hr class="my-4">
           <form:button class="w-100 btn btn-primary btn-lg" type="submit">Inserisci nel Database</form:button>

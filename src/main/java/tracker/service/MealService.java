@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import tracker.model.dao.MealDao;
+import tracker.model.entities.Food;
 import tracker.model.entities.Meal;
 import tracker.model.entities.User;
 
@@ -55,4 +56,13 @@ public class MealService {
 		this.mealRepository.delete(meal);
 	}
 
+	@Transactional
+	public Meal calculateCalories(Meal m) {
+		int sum = 0;
+		for (Food f : m.getFoods()) {
+			sum = sum + f.getCalorie();
+		}
+		m.setCalories(sum);
+		return this.mealRepository.update(m);
+	}
 }

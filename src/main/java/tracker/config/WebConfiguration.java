@@ -37,7 +37,7 @@ public class WebConfiguration implements WebMvcConfigurer{
 		return "Food Tracker";
 	}
 		
-	//Declare our static resources. I added cache to the java config but it's not required.
+	
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/css/**").addResourceLocations("/WEB-INF/css/")

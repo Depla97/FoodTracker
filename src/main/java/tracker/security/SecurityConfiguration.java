@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -37,23 +38,28 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
-//		http.authorizeRequests().antMatchers("/register").permitAll();
-//		http.authorizeRequests().antMatchers("/registerUser").permitAll();//Url di post per registrare un nuovo utente
-//		http.authorizeRequests().antMatchers("/login").permitAll();
-//		http.authorizeRequests().antMatchers("/").hasAnyRole("USER");
-//
-//		
-//		http.formLogin().loginPage("/login");
-//		http.formLogin().defaultSuccessUrl("/");
-//		http.formLogin().failureUrl("/login?error=true");
-//		http.formLogin().permitAll();
-//	
-//		http.logout().logoutSuccessUrl("/");
-//		http.logout().invalidateHttpSession(true);
-//		http.logout().permitAll();
-//	
-//		http.csrf().disable();
+		http.authorizeRequests().antMatchers("/login").permitAll();
+		http.authorizeRequests().antMatchers("/register").permitAll();
+		http.authorizeRequests().antMatchers("/registerUser").permitAll();//Url di post per registrare un nuovo utente
+		http.authorizeRequests().antMatchers("/**").hasAnyRole("USER");
+
+		http.formLogin().loginPage("/login");
+		http.formLogin().defaultSuccessUrl("/");
+		http.formLogin().failureUrl("/login?error=true");
+		http.formLogin().permitAll();
+	
+		http.logout().logoutSuccessUrl("/login");
+		http.logout().invalidateHttpSession(true);
+		http.logout().permitAll();
+	
+		http.csrf().disable();
 	}
 	
+	@Override
+	//Ignora i link ai css per valutare i permessi di accesso, così non blocca l'accesso ai link stessi
+	//e non reindirizza alla pagina css dopo login
+	public void configure(WebSecurity web){
+	    web.ignoring().antMatchers("/css/**");
+	}
 	
 }

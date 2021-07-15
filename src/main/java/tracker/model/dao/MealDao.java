@@ -2,11 +2,8 @@ package tracker.model.dao;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
-
 import org.springframework.stereotype.Repository;
 
-import tracker.model.entities.Food;
 import tracker.model.entities.Meal;
 import tracker.model.entities.User;
 
@@ -44,6 +41,6 @@ public class MealDao extends CommonDao{
 		return m;
 	}
 	
-
+	
 
 }
